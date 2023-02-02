@@ -15,7 +15,7 @@ router.post('/generate-pdf', async (req, res, next) => {
 
   await fs.writeFile(htmlFilePath, req.body.html);
   const pdf = await generatePdf(htmlFilePath);
-  // fs.unlink(htmlFilePath);
+  fs.unlink(htmlFilePath);
 
   res.attachment(`revision_${uuid}.pdf`);
   res.contentType("application/pdf");
