@@ -6,7 +6,6 @@ const generatePdf = async (htmlFilePath) => {
     executablePath: process.env.EXEC_PATH || undefined,
     args: process.env.ARGS ? process.env.ARGS.split(',') : undefined,
   });
-  console.log('path: ', htmlFilePath);
   const page = await browser.newPage();
   await page.goto('file://' + htmlFilePath);
   const pdf = await page.pdf({
@@ -19,7 +18,7 @@ const generatePdf = async (htmlFilePath) => {
         </header>
       `,
     footerTemplate: "<footer></footer>",
-    margin: { top: "10mm", bottom: "10mm", left: "10mm", right: "10mm" },
+    margin: { top: "10mm", bottom: "10mm" },
     printBackground: true,
   });
   await browser.close();
