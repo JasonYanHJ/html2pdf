@@ -3,9 +3,8 @@ const puppeteer = require("puppeteer");
 const generatePdf = async (htmlFilePath) => {
   const browser = await puppeteer.launch({
     headless: true,
-    // 在容器内运行时的尝试，但是仍然不行，
-    // executablePath: '/usr/bin/google-chrome',
-    // args: ["--no-sandbox", "--disable-setuid-sandbox", '--disable-gpu', '--single-process']
+    executablePath: process.env.EXEC_PATH || undefined,
+    args: process.env.ARGS ? process.env.ARGS.split(',') : undefined,
   });
   console.log('path: ', htmlFilePath);
   const page = await browser.newPage();

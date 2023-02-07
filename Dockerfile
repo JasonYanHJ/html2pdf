@@ -11,6 +11,10 @@ RUN apt-get update \
 
 WORKDIR /app
 COPY . .
+RUN echo "\
+EXEC_PATH=/usr/bin/google-chrome\n\
+ARGS=--no-sandbox,--disable-setuid-sandbox,--disable-gpu\n\
+" > .env
 
 RUN npm install
 
